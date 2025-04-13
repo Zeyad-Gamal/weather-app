@@ -1,0 +1,8 @@
+
+@mixin make-flex($direction , $gap){
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: wrap;
+    gap: $gap;
+}
+
