@@ -345,26 +345,31 @@ async function weather_today_data(data ,day = 6, week_day = 0) {
     // console.log("Today:",Today)
   
     // Today weather data details
-          var icon = '';
+          var icon = 'default_loader_weather';
           // var tavg = Today['tavg'] ? Today['tavg'] : "-";
           var tavg='';
           if (!Today || Today['tavg'] === null || Today['tavg'] === undefined) {
             tavg = "-";
+            icon = 'default_loader_weather';
             
         } else {
-            tavg = Today['tavg'];
+            tavg = Today['tavg'];   
+            
+            
+            if (Today['snow'] && Today['snow'] > 0) {
+              icon = 'Snow';
+          } else if (Today['prcp'] && Today['prcp'] > 0) {
+              icon = 'rainy';
+          } else if (Today['tavg'] && Today['tavg'] > 25) {
+              icon = 'clear';
+          } else {
+              icon = 'cloudy';
+          }
+
         }
 
   
-          if (Today['snow'] && Today['snow'] > 0) {
-      icon = 'Snow';
-  } else if (Today['prcp'] && Today['prcp'] > 0) {
-      icon = 'rainy';
-  } else if (Today['tavg'] && Today['tavg'] > 25) {
-      icon = 'clear';
-  } else {
-      icon = 'cloudy';
-  }
+         
   
   
           // Display today weather data into page
@@ -494,8 +499,26 @@ const {start_date , end_date } = await getCountryDateRange( dateStart);
 
         }
 
-        item_temp = item['tavg'] ? item['tavg']+"<sup>°</sup>" : '-';
+        // item_temp = item['tavg'] ? item['tavg']+"<sup>°</sup>" : '<i class="bi bi-exclamation-triangle-fill text-warning"></i>';
         
+        if(item['tavg']){
+          item_temp = item['tavg']+"<sup>°</sup>";
+          if (item['snow'] > 0) {
+            icon_container = 'Snow';
+          } else if (item['prcp'] > 0) {
+            icon_container = 'rainy';
+          } else if (item['tavg'] > 25) {
+            icon_container = 'clear';
+          } else {
+            icon_container = 'cloudy';
+          }
+        }
+        else{
+          item_temp = '<i class="bi bi-exclamation-triangle-fill text-warning"></i>';
+          icon_container = 'default_loader_weather';
+
+        }
+
         
         // if (item['prcp'] > 0) {
         //     icon_container = 'rainy';
@@ -507,15 +530,7 @@ const {start_date , end_date } = await getCountryDateRange( dateStart);
         //     icon_container = 'cloudy';
         //   }
 
-        if (item['snow'] > 0) {
-          icon_container = 'Snow';
-        } else if (item['prcp'] > 0) {
-          icon_container = 'rainy';
-        } else if (item['tavg'] > 25) {
-          icon_container = 'clear';
-        } else {
-          icon_container = 'cloudy';
-        }
+        
 
 displayed_date = dateStr.replace(" 00:00:00","");
           

@@ -45,13 +45,7 @@
 
     .left-side{
         
-        border-width: 0; border-right-width: 3px;border-color: whitesmoke;border-style: solid;
-
-        @include screenSizes(large){
-
-            border-right-width: 0;
-
-        }
+       
 
         @include make-flex(row !important,20px !important);justify-content: center;align-items: center;
         align-items: center;
@@ -89,6 +83,15 @@
         .left-icon{
             width: 30%;
         }
+    }
+
+
+    .mid-line{
+        background-color: white;width: 0.1rem;height: 200px;
+        @include screenSizes(mobile){
+
+            height: 0.1rem;width: 200px;
+            }
     }
 
 
@@ -188,9 +191,9 @@ text-align: center;
             @include make-flex(column,0); align-items: center; justify-content: center;
 
 
-            .degree-box-not-found-message{
+            // .degree-box-not-found-message{
                 
-            }
+            // }
         }
 
             }
