@@ -7,12 +7,26 @@
 
 
 
-.pg{
-    background-color: rgb(17, 23, 129);height: 100vh; 
 
-    @include make-flex(column,100px);
+.pg{
+    background-color: $bg-color;height: fit-content; 
+
+    @include make-flex(column,141.1px);
     flex-wrap: nowrap !important;
     justify-content: center;
+
+
+
+    @include screenSizes(mobile){
+
+        @include make-flex(column,90px);
+        }
+
+
+    .search-container{
+        position: relative;
+        top: 40px;
+    }
 
     .pg-{
         color: white;
@@ -27,17 +41,41 @@
 
 .pg-up{
     @include make-flex(row !important,10px !important);justify-content: center;
+    align-items: center;
 
     .left-side{
+        
         border-width: 0; border-right-width: 3px;border-color: whitesmoke;border-style: solid;
-        @include make-flex(row !important,20px !important);justify-content: center;align-items: center;
 
+        @include screenSizes(large){
+
+            border-right-width: 0;
+
+        }
+
+        @include make-flex(row !important,20px !important);justify-content: center;align-items: center;
+        align-items: center;
+
+        img{
+
+            width: 20% !important;
+            // @include screenSizes(mobile){
+
+            //     width: 20% !important;
+            // }
+        }
         .title-group{
         @include make-flex(column !important,2px !important);justify-content: center; align-items: center; text-align: center;
 
 
         h1{
-            font-size: 80px;
+            font-size: 60px;
+
+
+            @include screenSizes(mobile){
+
+                font-size: 40px;
+            }
         }
 
 
@@ -56,7 +94,6 @@
 
     .right-side{
         
-
         .degrees-container{
             
 
@@ -70,13 +107,30 @@
 text-align: center;
         .degree-title{
             font-size: 30px;
+            @include screenSizes(mobile){
+                font-size: 20px;
+                        }
         }
 
         .degree{
             font-size: 15px;font-weight: normal;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+        
+            @include screenSizes(mobile){
+                font-size: 10px;
+                        }
         }
 
+
+
+        @include screenSizes(mobile){
+            flex: 0 0 35%; /* 3 per row */
+            width: 90px;height: 100px;
+        }
+        
+
             }
+
+            
         }
     }
 
@@ -84,30 +138,59 @@ text-align: center;
 
 
 .pg-down{
+    background-color: $bg-color;
+    padding-bottom: 1rem;
+padding-inline: 0.5rem;
 position: relative;
+display: flex;
     .degrees-container{
-
-
-        width: 1000px;               /* Set width */
+        width: 1000px;              /* Set width */
         overflow-x: auto;           /* Enable horizontal scrolling */
         white-space: nowrap;        /* Prevent items from wrapping */
-            
-
-        @include make-flex(row,12px); align-items: center;
+        
+        position: relative;
+        bottom: 10px;
+        @include make-flex(row-reverse,12px); align-items: center; 
         flex-wrap: nowrap !important;
             .degrees-box{
                 background-color: rgb(11, 16, 110);border-radius: 8px;
                 min-width: 120px;min-height: 120px; 
+                cursor: pointer;
+                height: 100%;
 
-        @include make-flex(column,7px);justify-content: center; align-items: center;
+        @include make-flex(column,5px);justify-content: center; align-items: center;
                 
 text-align: center;
-        .degree-title{
+        .degree{
             font-size: 18px;font-weight: normal;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
         }
 
-        .degree{
-            font-size: 18px;font-weight: normal;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+        .degree-date{
+            font-size: 11px;font-weight: normal;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+        }
+
+        .degree-day{
+            font-size: 15px;font-weight: normal;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+        }
+
+
+
+        &.degrees-box-today{
+            background-color:#4F959D !important;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;                     
+        
+        
+        }
+
+
+        .degree-box-not-found{
+            background-color: rgba(42, 41, 41, 0.147) !important;width: 100% !important;height: 100% !important;border-radius: 8px;
+            @include make-flex(column,0); align-items: center; justify-content: center;
+
+
+            .degree-box-not-found-message{
+                
+            }
         }
 
             }

@@ -8,13 +8,26 @@
 
 .pg {
   background-color: rgb(17, 23, 129);
-  height: 100vh;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 100px;
+  gap: 141.1px;
   flex-wrap: nowrap !important;
   justify-content: center;
+}
+@media (max-width: 767px) {
+  .pg {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 90px;
+  }
+}
+.pg .search-container {
+  position: relative;
+  top: 40px;
 }
 .pg .pg- {
   color: white;
@@ -31,6 +44,7 @@
   flex-wrap: wrap;
   gap: 10px !important;
   justify-content: center;
+  align-items: center;
 }
 .pg-up .left-side {
   border-width: 0;
@@ -43,6 +57,15 @@
   gap: 20px !important;
   justify-content: center;
   align-items: center;
+  align-items: center;
+}
+@media (min-width: 1200px) {
+  .pg-up .left-side {
+    border-right-width: 0;
+  }
+}
+.pg-up .left-side img {
+  width: 20% !important;
 }
 .pg-up .left-side .title-group {
   display: flex;
@@ -54,7 +77,12 @@
   text-align: center;
 }
 .pg-up .left-side .title-group h1 {
-  font-size: 80px;
+  font-size: 60px;
+}
+@media (max-width: 767px) {
+  .pg-up .left-side .title-group h1 {
+    font-size: 40px;
+  }
 }
 .pg-up .left-side .title-group p {
   text-align: center;
@@ -86,21 +114,44 @@
 .pg-up .right-side .degrees-container .degrees-box .degree-title {
   font-size: 30px;
 }
+@media (max-width: 767px) {
+  .pg-up .right-side .degrees-container .degrees-box .degree-title {
+    font-size: 20px;
+  }
+}
 .pg-up .right-side .degrees-container .degrees-box .degree {
   font-size: 15px;
   font-weight: normal;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
+@media (max-width: 767px) {
+  .pg-up .right-side .degrees-container .degrees-box .degree {
+    font-size: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .pg-up .right-side .degrees-container .degrees-box {
+    flex: 0 0 35%; /* 3 per row */
+    width: 90px;
+    height: 100px;
+  }
+}
 
 .pg-down {
+  background-color: rgb(17, 23, 129);
+  padding-bottom: 1rem;
+  padding-inline: 0.5rem;
   position: relative;
+  display: flex;
 }
 .pg-down .degrees-container {
   width: 1000px; /* Set width */
   overflow-x: auto; /* Enable horizontal scrolling */
   white-space: nowrap; /* Prevent items from wrapping */
+  position: relative;
+  bottom: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
@@ -111,21 +162,44 @@
   border-radius: 8px;
   min-width: 120px;
   min-height: 120px;
+  cursor: pointer;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-.pg-down .degrees-container .degrees-box .degree-title {
-  font-size: 18px;
-  font-weight: normal;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 .pg-down .degrees-container .degrees-box .degree {
   font-size: 18px;
   font-weight: normal;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+.pg-down .degrees-container .degrees-box .degree-date {
+  font-size: 11px;
+  font-weight: normal;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+.pg-down .degrees-container .degrees-box .degree-day {
+  font-size: 15px;
+  font-weight: normal;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+.pg-down .degrees-container .degrees-box.degrees-box-today {
+  background-color: #4F959D !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.pg-down .degrees-container .degrees-box .degree-box-not-found {
+  background-color: rgba(42, 41, 41, 0.147) !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=main.css.map */

@@ -4,14 +4,14 @@ header('Content-Type: application/json');
 $curl = curl_init();
 
 
-$lat = '30.0444'; // Latitude of Cairo
-$lon = '31.2357'; // Longitude of Cairo
-$start_date = '2025-04-07';
-$end_date = '2025-04-14';
+$lat = '26.2540493'; // Latitude of Cairo
+$lon = '29.2675469'; // Longitude of Cairo
+$start_date = '2025-03-07';
+$end_date = '2025-04-15';
 
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://meteostat.p.rapidapi.com/point/daily?lat=$lat&lon=$lon&start=$start_date&end=$end_date",
+    CURLOPT_URL => "https://meteostat.p.rapidapi.com/stations/daily?station=62432&start=2024-03-01&end=2024-04-25",
     // CURLOPT_URL => "https://api.opencagedata.com/geocode/v1/json?q=Berlin&key=219a711761dc4cf1afe5fbd7d07944bf",
 
     CURLOPT_RETURNTRANSFER => true,
