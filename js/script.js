@@ -184,7 +184,7 @@ var ii = 0;
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      // console.log(data)
       // data.forEach(item => {
       //   if (item['name']['common'].includes('Israel')) return;
   
@@ -252,8 +252,8 @@ async function get_country_id(two_dimensions) {
     const dimensions = two_dimensions;
     const d_lat = await dimensions['lat'];
     const d_lon = await dimensions['lon'];
-    console.log("d_lat: ",d_lat)
-    console.log("d_lon: ",d_lon)
+    // console.log("d_lat: ",d_lat)
+    // console.log("d_lon: ",d_lon)
 
     const api = `https://meteostat.p.rapidapi.com/stations/nearby?lat=${d_lat}&lon=${d_lon}`;
 
@@ -416,6 +416,14 @@ async function weather_today_data_details(data , day = 6 , week_day = 0) {
         var windspeed = Today['wspd'];//
         var tsun = Today['tsun'] ? Today['tsun']+' h' : "-";
        }
+       else{
+        var tmin =  0 ;//
+        var tmax =  0;//
+        var Precipitation =  '-';//
+        var wpgt =  "-";
+        var windspeed = 0;//
+        var tsun =  "-";
+       }
         
 
         // Display today weather data into page
@@ -431,6 +439,9 @@ async function weather_today_data_details(data , day = 6 , week_day = 0) {
 
 
 async function weather_week_data(data  , startdate = null){
+  week_days_loading();
+
+  try {
   if(data == null){
     return null;
   }
@@ -447,6 +458,11 @@ async function weather_week_data(data  , startdate = null){
 
   // Today weather data
   var Week = weatherData; 
+
+  if(Week.length == 0){
+    week_days_loading_not_found();
+    return;
+  }
 
 
 var boxType = '';
@@ -520,6 +536,9 @@ box_index++;
       });
       document.getElementById('daily-container').innerHTML = container;
 
+  } catch (error) {
+    
+  }
 }
 
 
@@ -603,7 +622,7 @@ function search(){
 
 /** Search about country weather */
 async function country(c_name,date=null){
-console.log(c_name)
+// console.log(c_name)
   // week_days_loading();
   pub_country = c_name;
   update_country_name();
@@ -630,49 +649,8 @@ function update_country_name()
 
 
 
-function week_days_loading(){
-  var loader_ = `
-   <div class="degrees-box">
-                  <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                    <!-- <span class="sr-only">Loading...</span> -->
-                  </div>
-                </div>
-                <div class="degrees-box">
-                    <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                        <!-- <span class="sr-only">Loading...</span> -->
-                      </div>
-                </div>
-                <div class="degrees-box">
-                    <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                        <!-- <span class="sr-only">Loading...</span> -->
-                      </div>
-                </div>
-                <div class="degrees-box">
-                    <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                        <!-- <span class="sr-only">Loading...</span> -->
-                      </div>
-                </div>
-                <div class="degrees-box">
-                    <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                        <!-- <span class="sr-only">Loading...</span> -->
-                      </div>
-                </div>
-            
-    
-
-            <div class="degrees-box">
-              <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                <!-- <span class="sr-only">Loading...</span> -->
-              </div>
-            </div>
-
-            <div class="degrees-box">
-              <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
-                <!-- <span class="sr-only">Loading...</span> -->
-              </div>
-            </div>
-`;
-document.getElementById('daily-container').innerHTML = loader_;
+function week_days_loading_not_found(){
+  var loader_ = ``;
 
 setTimeout(() => {
 
@@ -750,6 +728,60 @@ document.getElementById('daily-container').innerHTML = loader_;
 
 
 }
+
+function week_days_loading(){
+
+  var loader_ = `
+  <div class="degrees-box">
+                 <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+                   <!-- <span class="sr-only">Loading...</span> -->
+                 </div>
+               </div>
+               <div class="degrees-box">
+                   <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+                       <!-- <span class="sr-only">Loading...</span> -->
+                     </div>
+               </div>
+               <div class="degrees-box">
+                   <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+                       <!-- <span class="sr-only">Loading...</span> -->
+                     </div>
+               </div>
+               <div class="degrees-box">
+                   <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+                       <!-- <span class="sr-only">Loading...</span> -->
+                     </div>
+               </div>
+               <div class="degrees-box">
+                   <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+                       <!-- <span class="sr-only">Loading...</span> -->
+                     </div>
+               </div>
+           
+   
+
+           <div class="degrees-box">
+             <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+               <!-- <span class="sr-only">Loading...</span> -->
+             </div>
+           </div>
+
+           <div class="degrees-box">
+             <div style="font-size: 1.5rem;width: 3rem;height: 3rem;" class="spinner-border text-warning" role="">
+               <!-- <span class="sr-only">Loading...</span> -->
+             </div>
+           </div>
+`;
+document.getElementById('daily-container').innerHTML = loader_;
+
+ 
+
+
+
+
+}
+
+
 
 
 async function weather_data_week(country_id , date = null , c_name = null){
